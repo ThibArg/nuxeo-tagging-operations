@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: nuxeo-tagging-operations
+Bundle-Name: nuxeo-tagging-operations
+Bundle-Version: 5.9.6.qualifier
+Bundle-ClassPath: .
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ManifestVersion: 2
+Bundle-Vendor: Nuxeo
+Nuxeo-Component: OSGI-INF/extensions/org.nuxeo.tagging.operations.TagD
+ ocumentOp.xml,OSGI-INF/extensions/org.nuxeo.tagging.operations.UntagD
+ ocumentOp.xml,OSGI-INF/extensions/org.nuxeo.tagging.operations.Remove
+ TagsFromDocumentOp.xml
+
