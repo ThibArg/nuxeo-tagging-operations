@@ -12,9 +12,8 @@
  * Lesser General Public License for more details.
  *
  * Contributors:
- *     thibaud
+ *     Thibaud Arguillere
  */
-
 package org.nuxeo.tagging.operations;
 
 import org.nuxeo.ecm.automation.core.Constants;
@@ -30,6 +29,7 @@ import org.nuxeo.ecm.platform.tag.TagService;
 
 /**
  *
+ * @since 5.9.6
  */
 @Operation(id = TagDocumentOp.ID, category = Constants.CAT_DOCUMENT, label = "Tag Document", description = "Add the tags <code>labels</code> (comma-separated list) to the current document. The <code>TagService</code> cleans each label (lowercase, remove spaces and punctuation, ...) before adding them.")
 public class TagDocumentOp {
@@ -55,9 +55,9 @@ public class TagDocumentOp {
 
         if (labels != null && labels.length() > 0) {
 
-            // When doing its cleanup, the TagService will also cleanup the
-            // spaces,
-            // so if the labels are separated with ", " instead of just ","
+            // When cleaning up the label, the TagService will also remove the
+            // spaces, so it's ok if the labels are separated with ", " instead
+            // of just ","
             String[] arrayLabels = labels.split(",");
             for (String theLabel : arrayLabels) {
                 String userName = TaggingUtilsHelper.getOriginatingUserOrCurrentUser(session);

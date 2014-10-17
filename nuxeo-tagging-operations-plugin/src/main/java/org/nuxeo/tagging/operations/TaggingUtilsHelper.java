@@ -12,9 +12,8 @@
  * Lesser General Public License for more details.
  *
  * Contributors:
- *     thibaud
+ *     Thibaud Arguillere
  */
-
 package org.nuxeo.tagging.operations;
 
 import org.apache.commons.logging.Log;
@@ -24,6 +23,12 @@ import org.nuxeo.ecm.core.api.NuxeoPrincipal;
 import org.nuxeo.ecm.platform.tag.TagService;
 import org.nuxeo.runtime.api.Framework;
 
+/**
+ * Utility class, just to centralize the code (this is called by
+ * at least 3 operations)
+ *
+ * @since 5.9.6
+ */
 public class TaggingUtilsHelper {
 
     private static final Log log = LogFactory.getLog(TaggingUtilsHelper.class);

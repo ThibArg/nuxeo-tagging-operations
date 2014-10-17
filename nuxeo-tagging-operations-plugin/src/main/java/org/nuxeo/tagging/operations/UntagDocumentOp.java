@@ -12,9 +12,8 @@
  * Lesser General Public License for more details.
  *
  * Contributors:
- *     thibaud
+ *     Thibaud Arguillere
  */
-
 package org.nuxeo.tagging.operations;
 
 import org.nuxeo.ecm.automation.core.Constants;
@@ -29,8 +28,9 @@ import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.platform.tag.TagService;
 
 /**
- *
- */
+*
+* @since 5.9.6
+*/
 @Operation(id = UntagDocumentOp.ID, category = Constants.CAT_DOCUMENT, label = "Untag Document", description = "Remove the tags <code>labels</code> (comma-separated list) from the current document. The <code>TagService</code> cleans each label (lowercase, remove spaces and punctuation, ...) before removing them.")
 public class UntagDocumentOp {
 

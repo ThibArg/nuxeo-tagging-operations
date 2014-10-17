@@ -1,5 +1,5 @@
 /*
- * (C) Copyright ${year} Nuxeo SA (http://nuxeo.com/) and contributors.
+ * (C) Copyright 2014 Nuxeo SA (http://nuxeo.com/) and contributors.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Lesser General Public License
@@ -12,9 +12,8 @@
  * Lesser General Public License for more details.
  *
  * Contributors:
- *     thibaud
+ *     Thibaud Arguillere
  */
-
 package org.nuxeo.tagging.operations;
 
 import org.nuxeo.ecm.automation.core.Constants;
@@ -28,8 +27,9 @@ import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.platform.tag.TagService;
 
 /**
- *
- */
+*
+* @since 5.9.6
+*/
 @Operation(id = RemoveTagsFromDocumentOp.ID, category = Constants.CAT_DOCUMENT, label = "Remove Tags from Document", description = "Remove all the tags of the current document")
 public class RemoveTagsFromDocumentOp {
 

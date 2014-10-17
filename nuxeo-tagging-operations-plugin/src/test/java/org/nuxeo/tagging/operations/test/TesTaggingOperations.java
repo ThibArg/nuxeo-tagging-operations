@@ -12,15 +12,15 @@
  * Lesser General Public License for more details.
  *
  * Contributors:
- *     thibaud
+ *     Thibaud Arguillere
  */
-
 package org.nuxeo.tagging.operations.test;
 
 import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,14 +47,21 @@ import com.google.inject.Inject;
 public class TesTaggingOperations {
 
     private static final String TAG_1 = "one";
+
     private static final String TAG_2 = "AnD Two";
+
     private static final String TAG_3 = "Three";
+
     private static final String TAGS = TAG_1 + "," + TAG_2 + ", " + TAG_3;
+
     private static final String TAG_1_formatted = "one";
+
     private static final String TAG_2_formatted = "andtwo";
+
     private static final String TAG_3_formatted = "three";
 
     protected DocumentModel theFileDoc;
+
     protected String theFileDocId;
 
     @Inject
@@ -79,6 +86,11 @@ public class TesTaggingOperations {
         theFileDocId = theFileDoc.getId();
     }
 
+    @After
+    public void cleanup() {
+        coreSession.removeDocument(theFileDoc.getRef());
+    }
+
     @Test
     public void testTagDocument() throws Exception {
         OperationContext ctx = new OperationContext(coreSession);
@@ -86,7 +98,7 @@ public class TesTaggingOperations {
 
         ctx.setInput(theFileDoc);
         OperationChain chain = new OperationChain("testChain");
-        chain.add(TagDocumentOp.ID).set("labels",  TAGS);
+        chain.add(TagDocumentOp.ID).set("labels", TAGS);
         automationService.run(ctx, chain);
 
         checkTag(TAG_1_formatted);
@@ -96,7 +108,8 @@ public class TesTaggingOperations {
     }
 
     protected void checkTag(String inTag) {
-        List<String> docIds = tagService.getTagDocumentIds(coreSession, inTag, null);
+        List<String> docIds = tagService.getTagDocumentIds(coreSession, inTag,
+                null);
         assertNotNull(docIds);
         assertEquals(1, docIds.size());
         assertEquals(theFileDocId, docIds.get(0));
@@ -106,13 +119,15 @@ public class TesTaggingOperations {
     public void testUntagDocument() throws Exception {
 
         OperationContext ctx = new OperationContext(coreSession);
-        assertNotNull(ctx);ctx.setInput(theFileDoc);
+        assertNotNull(ctx);
+        ctx.setInput(theFileDoc);
 
         OperationChain chain = new OperationChain("testChain");
-        chain.add(UntagDocumentOp.ID).set("labels",  TAG_1);
+        chain.add(UntagDocumentOp.ID).set("labels", TAG_1);
         automationService.run(ctx, chain);
 
-        List<String> docIds = tagService.getTagDocumentIds(coreSession, TAG_1, null);
+        List<String> docIds = tagService.getTagDocumentIds(coreSession, TAG_1,
+                null);
         assertEquals(0, docIds.size());
     }
 
@@ -120,13 +135,16 @@ public class TesTaggingOperations {
     public void testRemoveTags() throws Exception {
 
         OperationContext ctx = new OperationContext(coreSession);
-        assertNotNull(ctx);ctx.setInput(theFileDoc);
+        assertNotNull(ctx);
+        ctx.setInput(theFileDoc);
 
         OperationChain chain = new OperationChain("testChain");
         chain.add(RemoveTagsFromDocumentOp.ID);
         automationService.run(ctx, chain);
 
-        assertEquals(0, tagService.getDocumentTags(coreSession, theFileDocId, null).size() );
+        assertEquals(
+                0,
+                tagService.getDocumentTags(coreSession, theFileDocId, null).size());
     }
 
 }

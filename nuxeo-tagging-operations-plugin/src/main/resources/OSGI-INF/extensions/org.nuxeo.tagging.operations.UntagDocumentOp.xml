@@ -1,8 +1,8 @@
 <component name="org.nuxeo.tagging.UntagDocumentOp">
 
   <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
-    point="operations" >
-      <operation class="org.nuxeo.tagging.operations.UntagDocumentOp" />
-   </extension>
-    
+    point="operations">
+    <operation class="org.nuxeo.tagging.operations.UntagDocumentOp" />
+  </extension>
+
 </component>
